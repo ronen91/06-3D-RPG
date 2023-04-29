@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Hilly_Prop_Flower_Lily_Blue.obj-3b55c0b4544020cdc3d390e255de0d6b.mesh"
+
+[deps]
+
+files=[ "res://.import/Hilly_Prop_Flower_Lily_Blue.obj-3b55c0b4544020cdc3d390e255de0d6b.mesh" ]
+
+source_file="res://Assets/Hilly_Prop_Flower_Lily_Blue.obj"
+dest_files=[ "res://.import/Hilly_Prop_Flower_Lily_Blue.obj-3b55c0b4544020cdc3d390e255de0d6b.mesh", "res://.import/Hilly_Prop_Flower_Lily_Blue.obj-3b55c0b4544020cdc3d390e255de0d6b.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
