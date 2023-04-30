@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -8,6 +8,9 @@
 [ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=6]
 [ext_resource path="res://NPC/NPC.gd" type="Script" id=7]
 [ext_resource path="res://UI/Dialogue.gd" type="Script" id=8]
+[ext_resource path="res://Assets/06-RPG-Song.mp3" type="AudioStream" id=9]
+[ext_resource path="res://Drone/Drone.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Drone/UI/UI.gd" type="Script" id=11]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0, 0, 1 )
@@ -28,7 +31,9 @@ radius = 7.5168
 [node name="Game" type="Spatial"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.378326, 0, -0.925673, 0, 1, 0, 0.925673, 0, -0.378326, 52.3858, 0.848907, -10.5539 )
+transform = Transform( -0.378326, 0, -0.925673, 0, 1, 0, 0.925673, 0, -0.378326, 52.3858, 2.08179, -10.5539 )
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Pivot" type="Position3D" parent="Player"]
@@ -74,11 +79,19 @@ transform = Transform( -0.97565, 0, 0.219335, 0, 1, 0, -0.219335, 0, -0.97565, 6
 script = ExtResource( 7 )
 
 [node name="Area" type="Area" parent="NPC"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape" parent="NPC/Area"]
 shape = SubResource( 3 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 11 )
+
+[node name="Damage" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0 )
 
 [node name="Background" type="ColorRect" parent="UI"]
 anchor_right = 1.0
@@ -109,10 +122,21 @@ color = Color( 0, 0, 0, 0.501961 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 265.0
+margin_left = 315.0
 margin_top = -27.0
-margin_right = -269.0
+margin_right = -224.0
 margin_bottom = 3.0
+
+[node name="Music" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 9 )
+attenuation_model = 3
+autoplay = true
+max_distance = 4096.0
+
+[node name="Drone_container" type="Spatial" parent="."]
+
+[node name="Drone" parent="Drone_container" instance=ExtResource( 10 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, -4, 20, 100 )
 
 [connection signal="body_entered" from="NPC/Area" to="NPC" method="_on_Area_body_entered"]
 [connection signal="body_exited" from="NPC/Area" to="NPC" method="_on_Area_body_exited"]
